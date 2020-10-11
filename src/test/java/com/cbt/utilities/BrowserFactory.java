@@ -8,36 +8,18 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.safari.SafariDriver;
 
 public class BrowserFactory {
-    public static WebDriver getDriver(String arg){
-        String os = System.getProperty("os.name").toLowerCase();
-        if(os.contains("windows")&&arg.equalsIgnoreCase("safari")  ||  os.contains("mac")&&arg.equalsIgnoreCase("edg")){
-            return null;
-        }
-        switch (arg){
-            case "chrome":{
+    public static WebDriver getDriver(String browser){
+        browser = browser.toLowerCase();
+        switch(browser){
+            case "chrome":
                 WebDriverManager.chromedriver().setup();
                 return new ChromeDriver();
-            }
-            case "firefox":{
+            case "firefox":
                 WebDriverManager.firefoxdriver().setup();
                 return new FirefoxDriver();
-            }
-            case "edge":{
-                WebDriverManager.edgedriver().setup();
-                return new EdgeDriver();
-            }
-            case "safari":{
-                return new SafariDriver();
-            }
-            default:{
-                WebDriverManager.chromedriver().setup();
-                return new ChromeDriver();
-            }
-
         }
+        return null;
     }
 }
-
-
 
 
